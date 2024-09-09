@@ -1,10 +1,11 @@
 import smtplib
 import datetime as dt
 import random
+import os
 
 p = "1234ABC#$"
-my_email = "hub938171@gmail.com"
-password = "nghgfssddcawmtkd"
+my_email = os.environ.get('STMPLIB_EMAIL')
+password = os.environ.get('STMPLIB_PASSWORD')
 
 now = dt.datetime.now()
 weekday = now.weekday()

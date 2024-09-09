@@ -2,10 +2,11 @@ import os
 import requests
 from twilio.rest import Client
 from twilio.http.http_client import TwilioHttpClient
+import os
 
 
 OWM_ENDPOINT = "https://api.openweathermap.org/data/2.5/forecast"
-
+api_key = os.environ.get('WEATHER_API_KEY')
 MY_LAT = 53.459499
 MY_LONG = 14.452760
 
@@ -28,6 +29,11 @@ for hour_data in data["list"]:
     if int(condition_code) < 700:
         will_rain = True
 
+account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
+NUMBER = os.environ.get('TWILIO_NUMBER')
+MY_NUMBER = os.environ.get('MY_NUMBER')
+
 if will_rain:
     proxy_client = TwilioHttpClient()
     proxy_client.session.proxies = {'https': os.environ['https_proxy']}
@@ -36,7 +42,7 @@ if will_rain:
     message = client.messages.create(
         body="It's going to rain today. Remeber to bring an ☔️",
         from_=NUMBER,
-        to="4634888768"
+        to=MY_NUMBER
     )
 
     print(message.status)

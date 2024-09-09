@@ -1,6 +1,7 @@
 import requests
 from twilio.rest import Client
 import datetime as dt
+import os
 
 # from Day_35.main import message
 
@@ -10,6 +11,7 @@ COMPANY_NAME = "Tesla Inc"
 STOCK_ENDPOINT = "https://www.alphavantage.co/query"
 NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
+api_key = os.environ.get('STOCK_API_KEY')
 
 
     ## STEP 1: Use https://www.alphavantage.co/documentation/#daily
@@ -50,6 +52,11 @@ if diff_percent > 5:
     ## STEP 2: https://newsapi.org/ 
     # Instead of printing ("Get News"), actually get the first 3 news pieces for the COMPANY_NAME. 
 
+news_apikey = os.environ.get('NEWS_API_KEY')
+account_sid = os.environ.get('TWILIO_ACCOUNT_SID')
+auth_token = os.environ.get('TWILIO_AUTH_TOKEN')
+NUMBER = os.environ.get('TWILIO_NUMBER')
+MY_NUMBER = os.environ.get('MY_NUMBER')
 #TODO 6. - Instead of printing ("Get News"), use the News API to get articles related to the COMPANY_NAME.
 if abs(diff_percent) > 1:
     news_params ={
@@ -72,7 +79,7 @@ if abs(diff_percent) > 1:
         message = client.messages.create(
             body=article,
             from_=NUMBER,
-            to="793743943"
+            to=MY_NUMBER
         )
 
 

@@ -1,11 +1,15 @@
 import requests
 from datetime import datetime
 import smtplib
+import os
 
 
 MY_LAT = 53.459499
 MY_LONG = 14.452760
 
+
+my_email = os.environ.get('STMPLIB_EMAIL')
+password = os.environ.get('STMPLIB_PASSWORD')
 
 #ISS
 def is_iss_overhead():
