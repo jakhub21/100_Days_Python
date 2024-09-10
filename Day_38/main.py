@@ -51,7 +51,7 @@ for exercise in result["exercises"]:
         json=sheet_input,
         auth=(
             "jakhub21@gmail.com",
-            "Hubcio21#"
+            os.environ.get("SHEETY_PASSWORD")
         )
     )
 
